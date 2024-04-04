@@ -54,7 +54,13 @@ resource "aws_ecs_service" "taskoverflow" {
   network_configuration {
     subnets             = data.aws_subnets.private.ids
     security_groups     = [aws_security_group.todo.id]
-    assign_public_ip    = true
+    assign_public_ip    = false
+  }
+
+  load_balancer { 
+    target_group_arn = aws_lb_target_group.todo.arn 
+    container_name   = "todo" 
+    container_port   = 6400 
   }
 
 }

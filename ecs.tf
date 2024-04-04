@@ -54,7 +54,7 @@ resource "aws_ecs_service" "taskoverflow" {
   network_configuration {
     subnets             = data.aws_subnets.private.ids
     security_groups     = [aws_security_group.todo.id]
-    assign_public_ip    = false
+    assign_public_ip    = true
   }
 
   load_balancer { 
